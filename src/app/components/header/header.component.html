@@ -1,1 +1,44 @@
-<p>header works!</p>
+<header class="flex justify-between items-center w-full mb-8 h-20 p-4">
+  <button>
+    <img src="assets/images/BU-Blog.png" alt="Logo" />
+  </button>
+  <div class="flex items-center gap-2">
+    <div class="w-50">
+      <brn-select class="inline-block" placeholder="Select an option">
+        <hlm-select-trigger class="w-50">
+          <hlm-select-value />
+        </hlm-select-trigger>
+        <hlm-select-content class="bg-background w-50 rounded-lg">
+          <hlm-option value="Refresh">Refresh</hlm-option>
+          <hlm-option value="Settings">Settings</hlm-option>
+          <hlm-option value="Help">Help</hlm-option>
+          <hlm-option value="Signout">Sign out</hlm-option>
+        </hlm-select-content>
+      </brn-select>
+    </div>
+
+    <div class="border rounded-md">
+      <input
+        class="w-50 p-1 focus:w-80 duration-300"
+        hlmInput
+        type="search"
+        placeholder="Search by title"
+      />
+    </div>
+  </div>
+
+  <div class="cursor-pointer">
+    <label
+      (click)="onToggleTheme()"
+      class="flex items-center justify-center"
+      hlmLabel
+    >
+      <hlm-switch class="mr-2" />
+      @if (theme() === "dark") {
+        <ng-icon class="text-sm md:text-lg" name="lucideSunMoon" />
+      } @else {
+        <ng-icon class="text-sm md:text-lg" name="lucideMoon" />
+      }
+    </label>
+  </div>
+</header>

@@ -1,48 +1,53 @@
-<article
-  class="flex w-full items-center gap-5 rounded-xl bg-background px-5 py-4 shadow-md"
->
-  <!-- Thumbnail -->
-  <img
-    [src]="post().image"
-    alt="The Future of Technology"
-    class="h-20 w-28 flex-shrink-0 rounded-lg object-cover"
-  />
+<section class="w-full border-2 rounded-xl p-4" hlmCard>
+  <!-- Header: Title and Meta -->
+  <div hlmCardHeader class="flex items-start gap-4">
+    <!-- Thumbnail -->
+    <img
+      [src]="post().image"
+      alt="{{ post().title }}"
+      class="h-20 w-28 flex-shrink-0 rounded-lg object-cover"
+    />
 
-  <!-- Content -->
-  <div class="flex flex-1 flex-col gap-2">
-    <h2 class="text-lg font-semibold leading-tight">
-      {{ post().title }}
-    </h2>
+    <div class="flex-1 flex flex-col gap-1">
+      <h3 hlmCardTitle class="text-lg font-semibold">{{ post().title }}</h3>
 
-    <!-- Meta -->
-    <div class="flex items-center gap-2 text-xs text-neutral-400">
-      <span class="flex items-center gap-1">
-        <span
-          class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-neutral-700 text-[10px] font-semibold text-white"
-        >
-          {{ post().author | nameInitials }}
+      <!-- Meta: Author & Date -->
+      <p
+        hlmCardDescription
+        class="flex items-center gap-2 text-xs text-neutral-400"
+      >
+        <span class="flex items-center gap-1">
+          <span
+            class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-neutral-700 text-[10px] font-semibold text-white"
+          >
+            {{ post().author | nameInitials }}
+          </span>
+          {{ post().author }}
         </span>
-        {{ post().author }}
-      </span>
-      <span>•</span>
-      <span>{{ post().date.toDateString() }}</span>
+        •
+        <span>{{ post().date.toDateString() }}</span>
+        •
+        <span>{{ post().Topic }}</span>
+      </p>
     </div>
-
-    <!-- Description -->
-    <p class="max-w-3xl text-sm leading-relaxed text-neutral-300">
-      {{ post().content.slice(0, 200) }} ..........
-    </p>
   </div>
 
-  <!-- Actions -->
-  <div class="flex items-center gap-2">
-    <button
-      hlmBtn
-      variant="ghost"
-      size="sm"
-      class="text-neutral-300 hover:text-white"
-    >
-      Read More
-    </button>
+  <!-- Content: Description -->
+  <div
+    hlmCardContent
+    class="text-sm leading-relaxed mt-2 flex justify-between items-center relative"
+  >
+    <p class="w-[95%]">{{ post().content.slice(0, 200) }} ...</p>
+    <div hlmCardFooter class="flex items-center gap-2 mt-2">
+      <ng-icon
+        class="text-sm absolute bottom-0 right-8"
+        name="lucideView"
+      ></ng-icon>
+      <span class="absolute -bottom-0.5 right-1"
+        >({{ post().comments?.length }})</span
+      >
+    </div>
   </div>
-</article>
+
+  <!-- Footer: Actions -->
+</section>
