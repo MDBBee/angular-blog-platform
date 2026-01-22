@@ -5,11 +5,15 @@ import { Post } from '../models/post.type';
   providedIn: 'root',
 })
 export class PostService {
+  user = signal<string>('jkds76');
   posts = signal<Post[]>([
     {
       id: '1',
       title: 'Traveling the World on a Budget',
-      author: 'Jane Doe',
+      author: {
+        name: 'Emily Carter',
+        id: 'jkds76',
+      },
       date: new Date('2025-01-03'),
       Topic: 'Travel',
       content:
@@ -36,7 +40,10 @@ export class PostService {
     {
       id: '2',
       title: 'How Technology Is Shaping Our Daily Lives',
-      author: 'John Smith',
+      author: {
+        name: 'John Smith',
+        id: 'jkjhhj6767',
+      },
       date: new Date('2025-01-06'),
       Topic: 'Technology',
       content:
@@ -61,7 +68,10 @@ export class PostService {
     {
       id: '3',
       title: 'Understanding the Basics of Good Nutrition',
-      author: 'Emily Carter',
+      author: {
+        name: 'Emily Carter',
+        id: 'jkds76',
+      },
       date: new Date('2025-01-09'),
       Topic: 'Nutrition',
       content:
@@ -86,7 +96,10 @@ export class PostService {
     {
       id: '4',
       title: 'Simple Fitness Habits You Can Stick To',
-      author: 'Michael Brown',
+      author: {
+        name: 'Emily Carter',
+        id: 'jkds76',
+      },
       date: new Date('2025-01-12'),
       Topic: 'Fitness',
       content:
@@ -111,7 +124,10 @@ export class PostService {
     {
       id: '5',
       title: 'Finding Balance in a Busy Lifestyle',
-      author: 'Sarah Lee',
+      author: {
+        name: 'Emily Carter',
+        id: 'jkds76',
+      },
       date: new Date('2025-01-15'),
       Topic: 'Lifestyle',
       content:
@@ -136,7 +152,10 @@ export class PostService {
     {
       id: '6',
       title: 'Thoughts on Everyday Life',
-      author: 'David Kim',
+      author: {
+        name: 'Emily Carter',
+        id: 'jkds76',
+      },
       date: new Date('2025-01-18'),
       Topic: 'General',
       content:
@@ -161,7 +180,10 @@ export class PostService {
     {
       id: '7',
       title: 'Why Politics Matters in Everyday Life',
-      author: 'Olivia Wilson',
+      author: {
+        name: 'Emily Carter',
+        id: 'jkds76',
+      },
       date: new Date('2025-01-21'),
       Topic: 'Politics',
       content:
@@ -184,4 +206,12 @@ export class PostService {
       ],
     },
   ]);
+
+  fetchMyPosts(userId: string) {
+    return this.posts().filter((post) => post.author.id === userId);
+  }
+
+  getAllPosts() {
+    return this.posts();
+  }
 }

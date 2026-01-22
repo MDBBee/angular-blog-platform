@@ -8,7 +8,10 @@ export type Comment = {
 export type Post = {
   id: string;
   title: string;
-  author: string;
+  author: {
+    name: string;
+    id: string;
+  };
   date: Date;
   Topic: string;
   content: string;

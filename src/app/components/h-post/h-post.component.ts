@@ -7,7 +7,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 
 @Component({
   selector: 'app-h-post',
-  imports: [NameInitialsPipe, NgIcon, HlmIcon],
+  imports: [NameInitialsPipe, NgIcon],
   templateUrl: './h-post.component.html',
   styleUrl: './h-post.component.css',
   providers: [provideIcons({ lucideView })],
