@@ -19,3 +19,16 @@ export type Post = {
   image?: string; // Optional field for images
   comments?: Comment[]; // Optional field for comments
 };
+
+export type CreatePost = {
+  title: string;
+  author: {
+    name: string;
+    id: string;
+  };
+
+  topic: string;
+  content: string;
+  featured?: boolean;
+  image?: string; // Optional field for images
+};

@@ -1,4 +1,8 @@
-<form class="border-2 rounded-xl p-4">
+<form
+  class="border-2 rounded-xl p-4"
+  [formGroup]="postForm"
+  (ngSubmit)="submitPost()"
+>
   <div hlmFieldGroup>
     <fieldset hlmFieldSet>
       <legend hlmFieldLegend>New Post</legend>
@@ -12,20 +16,22 @@
             >
             <input
               hlmInput
-              [value]="postService.user().name"
               id="field-preview-name-on-card"
-              disabled
+              formControlName="author"
+              [value]="postService.user().name"
+              [disabled]="true"
             />
           </div>
           <div hlmField class="col-span-1">
             <div hlmField>
-              <label hlmFieldLabel for="field-exp-month--trigger"
+              <label hlmFieldLabel for="field-exp-topic--trigger"
                 >Select Topic</label
               >
               <brn-select
-                id="field-exp-month"
+                id="field-exp-topic"
                 class="inline-block"
                 placeholder="Topic..."
+                formControlName="topic"
               >
                 <hlm-select-trigger class="w-full">
                   <hlm-select-value />
@@ -42,10 +48,13 @@
             </div>
           </div>
           <div hlmField class="col-span-4">
-            <label hlmFieldLabel for="field-preview-name-on-card"
-              >Title of Post</label
-            >
-            <input hlmInput id="field-preview-name-on-card" type="text" />
+            <label hlmFieldLabel for="field-title-of-post">Title of Post</label>
+            <input
+              hlmInput
+              id="field-title-of-post"
+              type="text"
+              formControlName="title"
+            />
           </div>
         </div>
       </div>
@@ -55,27 +64,47 @@
     <fieldset hlmFieldSet>
       <div hlmFieldGroup>
         <div hlmField>
-          <label hlmFieldLabel for="field-preview-comments"
-            >Content of post</label
-          >
+          <label hlmFieldLabel for="field-post-content">Content of post</label>
           <textarea
             hlmTextarea
             class="resize-none"
-            id="field-preview-comments"
+            id="field-post-content"
+            formControlName="content"
           ></textarea>
         </div>
       </div>
     </fieldset>
 
     <div hlmField class="col-span-1">
-      <label hlmFieldLabel for="field-preview-name-on-card"
+      <label hlmFieldLabel for="field-post-image"
         >Publicly Hosted Image Url</label
       >
-      <input hlmInput id="field-preview-name-on-card" type="text" />
+      <input
+        hlmInput
+        id="field-post-image"
+        type="text"
+        formControlName="image"
+      />
     </div>
     <div hlmField orientation="horizontal">
-      <button hlmBtn>Submit</button>
-      <button hlmBtn variant="outline">Cancel</button>
+      <hlm-toaster />
+      <button
+        class="cursor-pointer active:scale-80 duration-300"
+        hlmBtn
+        type="submit"
+      >
+        Submit
+      </button>
+      <hlm-toaster />
+      <button
+        class="cursor-pointer active:scale-80 duration-300"
+        hlmBtn
+        variant="outline"
+        type="button"
+        (click)="failedToast()"
+      >
+        Reset
+      </button>
     </div>
   </div>
 </form>
