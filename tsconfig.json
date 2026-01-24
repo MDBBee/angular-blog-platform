@@ -57,6 +57,12 @@
       ],
       "@spartan-ng/helm/form-field": [
         "./libs/ui/form-field/src/index.ts"
+      ],
+      "@spartan-ng/helm/dialog": [
+        "./libs/ui/dialog/src/index.ts"
+      ],
+      "@spartan-ng/helm/card": [
+        "./libs/ui/card/src/index.ts"
       ]
     }
   },

@@ -1,0 +1,58 @@
+<section class="w-full p-4 bg-background flex gap-4" hlmCard>
+  <div hlmCardHeader>
+    <h3 hlmCardTitle>{{post().title}}</h3>
+    <p hlmCardDescription>Coverage: {{post().topic}}</p>
+    <p hlmCardDescription>Author: {{post().author.name}}</p>
+
+    <div hlmCardAction>
+      <button routerLink="/" class="cursor-pointer" hlmBtn variant="outline">
+        ← Go back to Home Page
+      </button>
+    </div>
+  </div>
+
+  <div hlmCardContent>
+    <div class="max-h-120 max-w-full mb-4 rounded-xl">
+      <img
+        [src]="post().image"
+        [alt]="post().title"
+        class="h-80 w-120 rounded-xl float-right ml-4 border-2 border-ring object-cover"
+      />
+      <p class="text-justify">{{post().content}}</p>
+    </div>
+  </div>
+
+  <div class="flex-col gap-4 border-2 rounded-xl p-4">
+    <h3 class="text-left font-bold">Comments</h3>
+    <ul class="max-w-[80%] space-y-3 mb-4">
+      @for (comment of post().comments; track comment.id) {
+      <li class="flex justify-between items-center border-2 p-2 rounded-xl">
+        <p class="max-w-[80%]">{{comment.comment}}</p>
+        <div class="flex gap-2 text-muted-foreground text-xs">
+          <p class="border-r-2 pr-2">{{comment.user.name}}</p>
+
+          <span> {{comment.date.toDateString()}} </span>
+        </div>
+      </li>
+      }
+    </ul>
+
+    <div class="flex justify-start items-center gap-2">
+      <textarea
+        hlmTextarea
+        class="border-2 rounded-xl w-full p-4 resize-none"
+        placeholder="Add your comment..."
+        [formControl]="comment"
+      ></textarea>
+      <hlm-toaster />
+      <button
+        hlmBtn
+        variant="secondary"
+        class="cursor-pointer border-2 active:scale-95 duration-200"
+        (click)="onSubmitComment()"
+      >
+        Submit Comment
+      </button>
+    </div>
+  </div>
+</section>

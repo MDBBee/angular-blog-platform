@@ -14,12 +14,7 @@
             <label hlmFieldLabel for="field-preview-name-on-card"
               >Name of Author</label
             >
-            <input
-              hlmInput
-              id="field-preview-name-on-card"
-              formControlName="author"
-              readonly
-            />
+            <input [value]="authorName" readonly />
           </div>
           <div hlmField class="col-span-1">
             <div hlmField>

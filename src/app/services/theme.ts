@@ -8,7 +8,6 @@ export type Theme = 'light' | 'dark' | 'system';
 })
 export class ThemeService {
   private document = inject(DOCUMENT);
-
   theme = signal<Theme>('system');
 
   constructor() {
@@ -40,6 +39,15 @@ export class ThemeService {
       this.theme.set('dark');
     } else if (current === 'dark') {
       this.theme.set('light');
+    } else {
+      if (
+        current === 'system' &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+      ) {
+        this.theme.set('light');
+      } else {
+        this.theme.set('dark');
+      }
     }
 
     localStorage.setItem('theme', this.theme());

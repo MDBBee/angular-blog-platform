@@ -1,6 +1,9 @@
 export type Comment = {
   id: number;
-  name: string;
+  user: {
+    name: string;
+    id: string;
+  };
   date: Date;
   comment: string;
 };
@@ -20,15 +23,11 @@ export type Post = {
   comments?: Comment[]; // Optional field for comments
 };
 
-export type CreatePost = {
-  title: string;
-  author: {
-    name: string;
-    id: string;
-  };
-
-  topic: string;
-  content: string;
-  featured?: boolean;
-  image?: string; // Optional field for images
-};
+// export type CreatePost = {
+//   title: string;
+//   topic: string;
+//   content: string;
+//   featured?: boolean;
+//   image?: string; // Optional field for images
+// };
+export type CreatePost = Omit<Post, 'id' | 'author' | 'comments'>; // Exclude id, author, and

@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Post } from '../models/post.type';
+import { CreatePost, Post } from '../models/post.type';
 
 const users = [
   {
@@ -9,6 +9,14 @@ const users = [
   {
     name: 'John Smith',
     id: 'jkjhhj6767',
+  },
+  {
+    name: 'Alex James',
+    id: 'hjhj34',
+  },
+  {
+    name: 'Maria Rodrigueze',
+    id: '8921bnbnds',
   },
 ];
 const topics = [
@@ -48,13 +56,19 @@ export class PostService {
       comments: [
         {
           id: 1,
-          name: 'Alex',
+          user: {
+            name: 'Alex James',
+            id: 'hjhj34',
+          },
           date: new Date('2025-01-04'),
           comment: 'These tips are super helpful!',
         },
         {
           id: 2,
-          name: 'Maria',
+          user: {
+            name: 'Maria Rodrigueze',
+            id: '8921bnbnds',
+          },
           date: new Date('2025-01-05'),
           comment: 'I wish I had read this before my last trip.',
         },
@@ -76,13 +90,19 @@ export class PostService {
       comments: [
         {
           id: 3,
-          name: 'Leo',
+          user: {
+            name: 'Maria Rodrigueze',
+            id: '8921bnbnds',
+          },
           date: new Date('2025-01-07'),
           comment: 'Very relevant topic these days.',
         },
         {
           id: 4,
-          name: 'Hannah',
+          user: {
+            name: 'Alex James',
+            id: 'hjhj34',
+          },
           date: new Date('2025-01-08'),
           comment: 'Loved the balanced perspective.',
         },
@@ -104,13 +124,19 @@ export class PostService {
       comments: [
         {
           id: 5,
-          name: 'Nina',
+          user: {
+            name: 'Alex James',
+            id: 'hjhj34',
+          },
           date: new Date('2025-01-10'),
           comment: 'Clear and easy to understand.',
         },
         {
           id: 6,
-          name: 'Tom',
+          user: {
+            name: 'Maria Rodrigueze',
+            id: '8921bnbnds',
+          },
           date: new Date('2025-01-11'),
           comment: 'This answered a lot of my questions.',
         },
@@ -132,13 +158,19 @@ export class PostService {
       comments: [
         {
           id: 7,
-          name: 'Ella',
+          user: {
+            name: 'Maria Rodrigueze',
+            id: '8921bnbnds',
+          },
           date: new Date('2025-01-13'),
           comment: 'Very motivating!',
         },
         {
           id: 8,
-          name: 'Ryan',
+          user: {
+            name: 'Alex James',
+            id: 'hjhj34',
+          },
           date: new Date('2025-01-14'),
           comment: 'I like the focus on consistency.',
         },
@@ -160,13 +192,19 @@ export class PostService {
       comments: [
         {
           id: 9,
-          name: 'Kevin',
+          user: {
+            name: 'Alex James',
+            id: 'hjhj34',
+          },
           date: new Date('2025-01-16'),
           comment: 'I really needed this reminder.',
         },
         {
           id: 10,
-          name: 'Laura',
+          user: {
+            name: 'Maria Rodrigueze',
+            id: '8921bnbnds',
+          },
           date: new Date('2025-01-17'),
           comment: 'Great practical advice.',
         },
@@ -188,13 +226,19 @@ export class PostService {
       comments: [
         {
           id: 11,
-          name: 'Oscar',
+          user: {
+            name: 'Maria Rodrigueze',
+            id: '8921bnbnds',
+          },
           date: new Date('2025-01-19'),
           comment: 'This was calming to read.',
         },
         {
           id: 12,
-          name: 'Zoe',
+          user: {
+            name: 'Alex James',
+            id: 'hjhj34',
+          },
           date: new Date('2025-01-20'),
           comment: 'Very relatable.',
         },
@@ -216,13 +260,19 @@ export class PostService {
       comments: [
         {
           id: 13,
-          name: 'Paul',
+          user: {
+            name: 'Alex James',
+            id: 'hjhj34',
+          },
           date: new Date('2025-01-22'),
           comment: 'Important perspective.',
         },
         {
           id: 14,
-          name: 'Lily',
+          user: {
+            name: 'Maria Rodrigueze',
+            id: '8921bnbnds',
+          },
           date: new Date('2025-01-23'),
           comment: 'Well explained and respectful.',
         },
@@ -236,5 +286,21 @@ export class PostService {
 
   getAllPosts() {
     return this.posts();
+  }
+
+  getOnePost(postId: string) {
+    return this.posts().filter((p) => p.id === postId)[0];
+  }
+
+  createPost(post: CreatePost) {
+    const author = this.user();
+    console.log('Creted');
+
+    const date = new Date();
+    const id = date.getTime().toString();
+
+    const newPost = { ...post, author, id };
+    this.posts.update((prevPosts) => [newPost, ...prevPosts]);
+    return;
   }
 }

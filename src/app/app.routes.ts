@@ -32,4 +32,11 @@ export const routes: Routes = [
       return m.CreateNewPostsComponent;
     },
   },
+  {
+    path: 'view-post/:id',
+    async loadComponent() {
+      const m = await import('./pages/view-post/view-post');
+      return m.ViewPost;
+    },
+  },
 ];

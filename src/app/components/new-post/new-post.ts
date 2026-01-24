@@ -18,6 +18,7 @@ import { HlmToaster, HlmToasterImports } from '@spartan-ng/helm/sonner';
 import { toast } from 'ngx-sonner';
 import { Router } from '@angular/router';
 import { FormFieldError } from '../form-field-error/form-field-error';
+import { CreatePost } from '../../models/post.type';
 
 @Component({
   selector: 'app-new-post',
@@ -43,6 +44,7 @@ export class NewPost {
   postService = inject(PostService);
   router = inject(Router);
   topics = computed(() => this.postService.topics());
+  authorName = this.postService.user().name;
 
   imageLoaded = false;
   imageError = false;
@@ -79,6 +81,11 @@ export class NewPost {
     featured: new FormControl(false),
   });
 
+  get formValue() {
+    const { author, ...formData } = this.postForm.value;
+    return formData as CreatePost;
+  }
+
   onSubmitPost() {
     if (this.postForm.invalid) {
       Object.keys(this.postForm.controls).forEach((key) => {
@@ -95,12 +102,22 @@ export class NewPost {
 
       return;
     }
-
     const date = new Date();
-    const featured = false;
-    const id = date.getTime().toString().slice(-5, -1);
+    const newPost = {
+      ...this.formValue,
+      date,
+    };
 
-    toast.success('Post Created Successfully!', {
+    // console.log('tLs', date.toLocaleString().split(' '));
+    // console.log('tLDs', date.toLocaleDateString());
+    // console.log('tDs', date.toDateString());
+    // console.log('tIs', date.toISOString());
+    // console.log('tTs', date.toTimeString());
+    // console.log('ts', date.toString());
+
+    this.postService.createPost(newPost);
+
+    toast.success('Post Created  Successfully!', {
       description: `Published on ${date.toDateString()}`,
       duration: 4000,
       action: {

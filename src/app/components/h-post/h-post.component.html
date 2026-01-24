@@ -1,6 +1,7 @@
 <section
   class="w-full border-2 rounded-xl p-4 shadow-md bg-border group cursor-pointer hover:-translate-y-1 duration-200"
   hlmCard
+  [routerLink]="['/view-post', post().id]"
 >
   <!-- Header: Title and Meta -->
   <div hlmCardHeader class="flex items-start gap-4">
@@ -30,7 +31,7 @@
           {{ post().author.name }}
         </span>
         •
-        <span>{{ post().date.toDateString() }}</span>
+        <span>{{ post().date.toLocaleString() }}</span>
         •
         <span>{{ post().topic }}</span>
       </p>
