@@ -1,28 +1,48 @@
-<p>edit-post works!</p>
-<hlm-dialog>
-  <button id="edit-profile" hlmDialogTrigger hlmBtn variant="outline">
-    Open Dialog
-  </button>
-  <hlm-dialog-content class="sm:max-w-[425px]" *brnDialogContent="let ctx">
-    <hlm-dialog-header>
-      <h3 hlmDialogTitle>Edit profile</h3>
-      <p hlmDialogDescription>
-        Make changes to your profile here. Click save when you're done.
-      </p>
-    </hlm-dialog-header>
-    <div class="grid gap-4">
-      <div class="grid gap-3">
-        <label hlmLabel for="name" class="text-right">Name</label>
-        <input hlmInput id="name" value="Pedro Duarte" />
-      </div>
-      <div class="grid gap-3">
-        <label hlmLabel for="username" class="text-right">Username</label>
-        <input hlmInput id="username" value="@peduarte" class="col-span-3" />
-      </div>
+<button
+  class="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 cursor-pointer active:scale-95 transition-all duration-150"
+  (click)="openDialog()"
+>
+  Edit Post
+</button>
+
+<!-- Dialog Backdrop -->
+@if (isDialogOpen) {
+<div
+  class="fixed inset-0 backdrop-blur-md z-50 flex items-center justify-center p-4"
+  (click)="closeDialog()"
+>
+  <!-- Dialog Container -->
+  <div
+    class="bg-background border border-border rounded-lg shadow-xl max-w-6xl w-full max-h-[90vh] overflow-hidden"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Dialog Header -->
+    <div class="flex justify-between items-center p-6 border-b border-border">
+      <h2 class="text-xl font-semibold text-foreground">Edit Post</h2>
+      <button
+        class="text-muted-foreground hover:text-foreground transition-colors"
+        (click)="closeDialog()"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
     </div>
-    <hlm-dialog-footer>
-      <button hlmBtn variant="outline" brnDialogClose>Cancel</button>
-      <button hlmBtn type="submit">Save changes</button>
-    </hlm-dialog-footer>
-  </hlm-dialog-content>
-</hlm-dialog>
+
+    <!-- Dialog Content -->
+    <div class="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+      <app-new-post></app-new-post>
+    </div>
+  </div>
+</div>
+}

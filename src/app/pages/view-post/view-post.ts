@@ -17,7 +17,8 @@ import {
 } from '@angular/forms';
 import { toast } from 'ngx-sonner';
 import { HlmToaster } from '@spartan-ng/helm/sonner';
-import { validators } from 'tailwind-merge';
+
+import { EditPost } from '../../components/edit-post/edit-post';
 
 @Component({
   selector: 'app-view-post',
@@ -32,6 +33,8 @@ import { validators } from 'tailwind-merge';
     ɵInternalFormsSharedModule,
     ReactiveFormsModule,
     HlmToaster,
+
+    EditPost,
   ],
   templateUrl: './view-post.html',
   styleUrl: './view-post.css',

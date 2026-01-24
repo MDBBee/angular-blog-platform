@@ -10,7 +10,7 @@
       </button>
     </div>
   </div>
-
+  <!-- Post content & Image -->
   <div hlmCardContent>
     <div class="max-h-120 max-w-full mb-4 rounded-xl">
       <img
@@ -21,7 +21,23 @@
       <p class="text-justify">{{post().content}}</p>
     </div>
   </div>
+  <!-- Dialogue, Delete and Edit buttons -->
+  <div>
+    @if(post().author.id === postService.user().id){
 
+    <div class="flex gap-4">
+      <button
+        class="cursor-pointer active:scale-95 duration-200"
+        hlmBtn
+        variant="destructive"
+      >
+        Delete Post
+      </button>
+      <app-edit-post></app-edit-post>
+    </div>
+    }
+  </div>
+  <!-- Comments Section-->
   <div class="flex-col gap-4 border-2 rounded-xl p-4">
     <h3 class="text-left font-bold">Comments</h3>
     <ul class="max-w-[80%] space-y-3 mb-4">
