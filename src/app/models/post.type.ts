@@ -24,16 +24,9 @@ export type Post = {
   topic: string;
   content: string;
   featured?: boolean;
-  image?: string; // Optional field for images
-  comments?: Comment[]; // Optional field for comments
+  image?: string;
+  comments?: Comment[];
 };
 
-// export type CreatePost = {
-//   title: string;
-//   topic: string;
-//   content: string;
-//   featured?: boolean;
-//   image?: string; // Optional field for images
-// };
 export type CreatePost = Omit<Post, 'id' | 'author' | 'comments'>;
 export type UpdatePost = Omit<Post, 'id' | 'author' | 'comments'>;

@@ -17,7 +17,7 @@ const users = [
   {
     name: 'Alex James',
     id: 'hjhj34',
-    role: 'User',
+    role: 'Admin',
     access: 'Allowed',
   },
   {
@@ -42,9 +42,9 @@ const topics = [
 export class PostService {
   user = signal<{ name: string; id: string; role: Role; access: AccessStatus }>(
     {
-      name: 'Emily Carter',
-      id: 'jkds76',
-      role: 'User',
+      name: 'Alex James',
+      id: 'hjhj34',
+      role: 'Admin',
       access: 'Allowed',
     },
   );

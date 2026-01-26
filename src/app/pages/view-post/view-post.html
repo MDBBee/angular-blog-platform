@@ -23,7 +23,8 @@
   </div>
   <!-- Dialogue, Delete and Edit buttons -->
   <div>
-    @if(post().author.id === postService.user().id){
+    @if(post().author.id === postService.user().id || postService.user().role
+    === "Admin"){
 
     <div class="flex gap-4">
       <button

@@ -9,6 +9,12 @@
     </h1>
 
     <app-sb-button
+      routerLink="/"
+      btnName="All Posts"
+      iconName="lucideBrickWall"
+    />
+
+    <app-sb-button
       routerLink="/create-new-posts"
       btnName="New Post"
       iconName="lucideNewspaper"
@@ -18,11 +24,13 @@
       btnName="My Posts"
       iconName="lucideFileEdit"
     />
-    <app-sb-button
-      routerLink="/admin-dashboard"
-      btnName="Dashboard"
-      iconName="lucideLayoutDashboard"
-    />
+    @if (user().role === "Admin") {
+      <app-sb-button
+        routerLink="/admin-dashboard"
+        btnName="Dashboard"
+        iconName="lucideLayoutDashboard"
+      />
+    }
   </div>
   <button
     hlmDropdownMenuItem

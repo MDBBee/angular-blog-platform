@@ -5,6 +5,7 @@ import {
   lucideNewspaper,
   lucideFileEdit,
   lucideLayoutDashboard,
+  lucideBrickWall,
 } from '@ng-icons/lucide';
 
 @Component({
@@ -18,6 +19,7 @@ import {
       lucideNewspaper,
       lucideFileEdit,
       lucideLayoutDashboard,
+      lucideBrickWall,
     }),
   ],
 })
