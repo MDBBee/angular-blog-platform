@@ -30,11 +30,11 @@
         >
           {{ featuredPost().author.name | nameInitials }}
         </span>
-        <span>{{ featuredPost().author }}</span>
+        <span>{{ featuredPost().author.name }}</span>
       </div>
 
       <span class="opacity-60">•</span>
-      <span> {{ featuredPost().date.toDateString() }} </span>
+      <span> {{ featuredPost().date | date }} </span>
       <span class="opacity-60">•</span>
       <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-medium">
         Travel

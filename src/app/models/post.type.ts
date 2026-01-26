@@ -10,16 +10,17 @@ export type Comment = {
 
 export type Role = 'Admin' | 'User';
 export type AccessStatus = 'Blocked' | 'Allowed';
+export type User = {
+  name: string;
+  id: string;
+  role: Role;
+  access: AccessStatus;
+};
 
 export type Post = {
   id: string;
   title: string;
-  author: {
-    name: string;
-    id: string;
-    role: Role;
-    access: AccessStatus;
-  };
+  author: User;
   date: Date;
   topic: string;
   content: string;

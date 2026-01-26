@@ -1,10 +1,11 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { Post } from '../../models/post.type';
 import { NameInitialsPipe } from '../../pipes/name-initials.pipe';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-h-hero',
-  imports: [NameInitialsPipe],
+  imports: [NameInitialsPipe, DatePipe],
   templateUrl: './h-hero.component.html',
   styleUrl: './h-hero.component.css',
 })

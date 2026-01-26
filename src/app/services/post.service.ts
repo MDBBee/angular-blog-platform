@@ -1,31 +1,46 @@
-import { Injectable, signal } from '@angular/core';
-import { AccessStatus, CreatePost, Post, Role } from '../models/post.type';
+import { inject, Injectable, signal } from '@angular/core';
+import {
+  AccessStatus,
+  CreatePost,
+  Post,
+  Role,
+  User,
+} from '../models/post.type';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
-  user = signal<{ name: string; id: string; role: Role; access: AccessStatus }>(
-    {
-      name: 'Alex James',
-      id: 'hjhj34',
-      role: 'Admin',
-      access: 'Allowed',
-    },
-  );
+  http = inject(HttpClient);
+  user = signal<User>({
+    name: 'John Smith',
+    id: 'jkjhhj6767',
+    role: 'Admin',
+    access: 'Allowed',
+  });
   topics = signal<string[]>([]);
   posts = signal<Post[]>([]);
+  curPost = signal<Post | null>(null);
 
   fetchMyPosts(userId: string) {
     return this.posts().filter((post) => post.author.id === userId);
   }
 
   getAllPosts() {
-    return this.posts();
+    const url = 'http://localhost:3000/blogPosts';
+    return this.http.get<Post[]>(url).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      }),
+    );
   }
 
   getOnePost(postId: string) {
-    return this.posts().filter((p) => p.id === postId)[0];
+    const url = 'http://localhost:3000/blogPosts';
+    return this.http.get<Post>(url + `/${postId}`);
   }
 
   createPost(post: CreatePost) {

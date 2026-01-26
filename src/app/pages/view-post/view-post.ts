@@ -35,16 +35,12 @@ import { EditPost } from '../../components/edit-post/edit-post';
 })
 export class ViewPost implements OnInit {
   postService = inject(PostService);
-  postId = signal<string>('');
   router = inject(Router);
+  postId = signal<string>('');
 
   // Use computed to reactively get the post from the service
   post = computed(() => {
-    const id = this.postId();
-    if (!id) return this.getDefaultPost();
-    return (
-      this.postService.posts().find((p) => p.id === id) || this.getDefaultPost()
-    );
+    return this.postService.curPost() || this.getDefaultPost();
   });
 
   comment = new FormControl('', {
@@ -59,6 +55,14 @@ export class ViewPost implements OnInit {
       const postId = params.get('id');
       if (postId) {
         this.postId.set(postId);
+
+        this.postService.getOnePost(postId).subscribe({
+          next: (res) => this.postService.curPost.set(res),
+          error: (err) => {
+            console.log(err);
+            return this.postService.curPost.set(this.getDefaultPost());
+          },
+        });
       }
     });
   }
