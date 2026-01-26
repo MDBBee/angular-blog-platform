@@ -13,7 +13,7 @@ export class PostService {
       access: 'Allowed',
     },
   );
-  topics = signal<string[]>(topics);
+  topics = signal<string[]>([]);
   posts = signal<Post[]>([]);
 
   fetchMyPosts(userId: string) {
